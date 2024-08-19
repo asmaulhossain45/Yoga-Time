@@ -37,34 +37,9 @@ const blurHeader = () => {
 };
 window.addEventListener("scroll", blurHeader);
 
-/*=============== TESTIMONIAL SWIPER ===============*/
-let testimonialSwiper = new Swiper(".testimonial-swiper", {
-  spaceBetween: 30,
-  loop: "true",
-
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
-
-/*=============== NEW SWIPER ===============*/
-let newSwiper = new Swiper(".new-swiper", {
-  spaceBetween: 24,
-  loop: "true",
-
-  breakpoints: {
-    576: {
-      slidesPerView: 2,
-    },
-    768: {
-      slidesPerView: 3,
-    },
-    1024: {
-      slidesPerView: 4,
-    },
-  },
-});
+/*=============== Copyright Year ===============*/
+const year = new Date().getFullYear();
+document.getElementById("currentYear").textContent = year;
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll("section[id]");
@@ -92,38 +67,19 @@ window.addEventListener("scroll", scrollActive);
 /*=============== SHOW SCROLL UP ===============*/
 const scrollUp = () => {
   const scrollUp = document.getElementById("scroll-up");
+  console.log("Scroll Position:", window.scrollY); // Log the scroll position
+
   // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
-  this.scrollY >= 350
+  window.scrollY >= 350
     ? scrollUp.classList.add("show-scroll")
     : scrollUp.classList.remove("show-scroll");
 };
 window.addEventListener("scroll", scrollUp);
 
-/*=============== SHOW CART ===============*/
-const cart = document.getElementById("cart"),
-  cartShop = document.getElementById("cart-shop"),
-  cartClose = document.getElementById("cart-close");
-
-/*===== CART SHOW =====*/
-/* Validate if constant exists */
-if (cartShop) {
-  cartShop.addEventListener("click", () => {
-    cart.classList.add("show-cart");
-  });
-}
-
-/*===== CART HIDDEN =====*/
-/* Validate if constant exists */
-if (cartClose) {
-  cartClose.addEventListener("click", () => {
-    cart.classList.remove("show-cart");
-  });
-}
-
 /*=============== DARK LIGHT THEME ===============*/
 const themeButton = document.getElementById("theme-button");
 const darkTheme = "dark-theme";
-const iconTheme = "bx-sun";
+const iconTheme = "ri-sun-line";
 
 // Previously selected topic (if user selected)
 const selectedTheme = localStorage.getItem("selected-theme");
@@ -133,7 +89,7 @@ const selectedIcon = localStorage.getItem("selected-icon");
 const getCurrentTheme = () =>
   document.body.classList.contains(darkTheme) ? "dark" : "light";
 const getCurrentIcon = () =>
-  themeButton.classList.contains(iconTheme) ? "bx bx-moon" : "bx bx-sun";
+  themeButton.classList.contains(iconTheme) ? "ri-moon-line" : "ri-sun-line";
 
 // We validate if the user previously chose a topic
 if (selectedTheme) {
@@ -141,7 +97,7 @@ if (selectedTheme) {
   document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
     darkTheme
   );
-  themeButton.classList[selectedIcon === "bx bx-moon" ? "add" : "remove"](
+  themeButton.classList[selectedIcon === "ri-moon-line" ? "add" : "remove"](
     iconTheme
   );
 }
